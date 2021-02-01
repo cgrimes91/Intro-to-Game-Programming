@@ -1,0 +1,41 @@
+1. What is the lerp function and why would it produce a smoother rendering of motion in
+
+void FixedUpdate () {
+// Create a postion the camera is aiming for based on the offset from the target.
+Vector3 targetCamPos = target.position + offset;
+// Smoothly interpolate between the camera's current position and it's target position.
+transform.position = Vector3.Lerp (transform.position, targetCamPos, Time.deltaTime);
+}
+
+than with
+
+void FixedUpdate () {
+// Create a postion the camera is aiming for based on the offset from the target.
+transform.position= target.position + offset;
+}?
+
+ans->  Lerp will find points along the path between two endpoints so that the motion looks more fluid and moves incrementally.
+
+2. What Unity animation feature is used to create smooth transitions between animations.
+
+ans-> Transitions
+
+3. Give an example of why one would user animator controller layer..
+
+ans-> so that two animations can run simultainously. Ex: running and breathing heavy
+
+4. What Unity editor feature would one use to compartmentalize a complex finite state machine of
+an animation.
+
+ans-> using a sub_state machine for specific states such as being wounded
+
+5. Find (or write) a script to continually rotate an object so that the initial view of the object from
+the positive Z axis always faces the camera.
+
+ans->  public Camera m_Camera;
+ 
+    void LateUpdate()
+    {
+        transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.forward,
+            m_Camera.transform.rotation * Vector3.up);
+    }
